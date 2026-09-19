@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "1.0",
+  "id": "vulncommerce-node",
+  "name": "VulnCommerce Node",
+  "kind": "web-application",
+  "language": "javascript",
+  "framework": ["nodejs", "express"],
+  "runtime": {
+    "nodeVersion": "20"
+  },
+  "entrypoints": [
+    {
+      "type": "application",
+      "path": "src/server.js"
+    },
+    {
+      "type": "app-factory",
+      "path": "src/app.js"
+    },
+    {
+      "type": "dependency-manifest",
+      "path": "package.json"
+    },
+    {
+      "type": "public-root",
+      "path": "public"
+    }
+  ],
+  "build": {
+    "tool": "npm",
+    "manifest": "package.json",
+    "install": "npm install",
+    "command": "npm run check",
+    "start": "npm start"
+  },
+  "scan": {
+    "roots": [
+      "src",
+      "public"
+    ],
+    "include": [
+      "**/*.js",
+      "**/*.json",
+      "**/*.html"
+    ],
+    "exclude": [
+      "node_modules/**",
+      ".git/**"
+    ]
+  },
+  "groundTruth": {
+    "manifest": "LAB_MANIFEST.md"
+  },
+  "lab": {
+    "intentionallyVulnerable": true,
+    "safeForProduction": false
+  }
+}
